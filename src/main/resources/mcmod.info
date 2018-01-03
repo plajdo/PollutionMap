@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pollutionmap",
+  "name": "Pollution map",
+  "description": "Pollution map for Ecology mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Plajdo"],
+  "credits": "The guy who made the best Ecology mod - Artem226.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
