@@ -10,7 +10,7 @@ public class MapTileEntity extends TileEntity implements ITickable{
 	
 	@Override
 	public void update() {
-		if(world.isRemote){
+		if(!world.isRemote){
 			if(tickCount > 20){
 				int chunkX = pos.getX() >> 4;
 				int chunkZ = pos.getZ() >> 4;
