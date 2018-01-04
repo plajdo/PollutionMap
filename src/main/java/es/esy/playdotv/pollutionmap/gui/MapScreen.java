@@ -15,4 +15,10 @@ public class MapScreen extends GuiScreen{
 		return false;
 	}
 	
+	@Override
+	public void initGui() {
+		System.out.println("wolololololo gui");
+		this.fontRenderer.drawString("Aaaaa", 0, 0, 16719390);
+	}
+	
 }
