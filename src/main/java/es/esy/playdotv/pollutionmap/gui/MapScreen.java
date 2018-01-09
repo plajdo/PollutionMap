@@ -9,15 +9,14 @@ import net.minecraft.util.math.Vec3d;
 public class MapScreen extends GuiScreen{
 	
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen(int mouseX, int mouseY, float partialTicks){
 		this.drawDefaultBackground();
 		
-		//drawRect(width/2-50, height/2-50, width/2+50, height/2+50, getBlockColour());
 		drawMap();
 		
 	}
 	
-	private void drawMap() {
+	private void drawMap(){
 		int indexX = -128;
 		int indexY = -128;
 		
@@ -25,8 +24,15 @@ public class MapScreen extends GuiScreen{
 			int posX = width / 2 + indexX;
 			while(indexY < 128){
 				int posY = height / 2 + indexY;
-				BlockPos bp = new BlockPos(getThisPos().getX() + indexX, mc.world.getHeight(getThisPos().getX(), getThisPos().getZ()), getThisPos().getZ() + indexY);
+				
+				int bpX = getThisPos().getX() + indexX;
+				int bpZ = getThisPos().getZ() + indexY;
+				int bpY = mc.world.getHeight(bpX, bpZ) - 1;
+				
+				BlockPos bp = new BlockPos(bpX, bpY, bpZ);
+				
 				drawRect(posX, posY, posX + 1, posY + 1, getBlockColour(bp));
+				
 				indexY++;
 				
 			}
@@ -59,30 +65,29 @@ public class MapScreen extends GuiScreen{
 
 	}
 	
-	private int getHighestBlock(int x, int z) {
-		for(int i = 255; i < 1; i--){
-			if(mc.world.canBlockSeeSky(new BlockPos(x, i, z))){
-				System.out.println(i);
+	private int getHighestBlock(int x, int z){
+		for(int i = 255; i > 0; i--){
+			if(mc.world.getBlockState(new BlockPos(x, i, z)).isOpaqueCube()){
 				return i;
 			}
 			
 		}
-		return 0;
+		return 62;
 
 	}
 	
 	@Override
-	public boolean doesGuiPauseGame() {
+	public boolean doesGuiPauseGame(){
 		return false;
 	}
 	
 	@Override
-	public void initGui() {
+	public void initGui(){
 		
 	}
 	
 	@Override
-	public void updateScreen() {
+	public void updateScreen(){
 		
 	}
 	
