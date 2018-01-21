@@ -13,7 +13,7 @@ public class MapScreen extends GuiScreen{
 		this.drawDefaultBackground();
 		
 		drawMap();
-		
+				
 	}
 	
 	private void drawMap(){
@@ -27,7 +27,7 @@ public class MapScreen extends GuiScreen{
 				
 				int bpX = getThisPos().getX() + indexX;
 				int bpZ = getThisPos().getZ() + indexY;
-				int bpY = mc.world.getHeight(bpX, bpZ) - 1;
+				int bpY = getHighestBlock(bpX, bpZ);
 				
 				BlockPos bp = new BlockPos(bpX, bpY, bpZ);
 				
@@ -67,7 +67,7 @@ public class MapScreen extends GuiScreen{
 	
 	private int getHighestBlock(int x, int z){
 		for(int i = 255; i > 0; i--){
-			if(mc.world.getBlockState(new BlockPos(x, i, z)).isOpaqueCube()){
+			if(!mc.world.getBlockState(new BlockPos(x, i, z)).isTranslucent()){
 				return i;
 			}
 			
@@ -78,7 +78,7 @@ public class MapScreen extends GuiScreen{
 	
 	@Override
 	public boolean doesGuiPauseGame(){
-		return false;
+		return true;
 	}
 	
 	@Override
