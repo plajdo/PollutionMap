@@ -2,6 +2,7 @@ package es.esy.playdotv.pollutionmap.gui;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -67,7 +68,7 @@ public class MapScreen extends GuiScreen{
 	
 	private int getHighestBlock(int x, int z){
 		for(int i = 255; i > 0; i--){
-			if(!mc.world.getBlockState(new BlockPos(x, i, z)).isTranslucent()){
+			if(!(mc.world.getBlockState(new BlockPos(x, i, z)) == Blocks.AIR)){
 				return i;
 			}
 			
